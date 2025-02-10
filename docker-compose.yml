@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  nextcloud:
+    image: nextcloud:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nextcloud/config:/var/www/html/config
+      - ./nextcloud/data:/var/www/html/data
+      - ./nextcloud/custom_apps:/var/www/html/custom_apps
+      - ./nextcloud/themes:/var/www/html/themes
+    environment:
+      - MYSQL_PASSWORD=[Password]
+      - MYSQL_DATABASE=nextcloud_[client]
+      - MYSQL_USER=[User]
+      - MYSQL_HOST=[Ip_Server]
